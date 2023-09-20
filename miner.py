@@ -3,10 +3,14 @@ from tqdm.notebook import tqdm
 from datetime import datetime
 import requests
 import os
+import time
 
 SAVE_DIR = ("Data")
 
 if __name__ == "__main__":
+    
+    # Keep score of time
+    start_time = time.time()
 
     # Call the API
     response = requests.get(
@@ -59,6 +63,8 @@ if __name__ == "__main__":
                 "network_sponsors",
                 "image",
                 "url",
+                "state_id",
+                
             ],
             axis=1,
         )
@@ -75,3 +81,5 @@ if __name__ == "__main__":
         # Write to csv with appropriate title
         df.to_csv(
             f"Data/publibikes_{datetime.now().strftime('%Y%m%d%H%M%S')}.csv", index=False)
+    
+    print(f"Elapsed time: {time.time() - start_time}")
