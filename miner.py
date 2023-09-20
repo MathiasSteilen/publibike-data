@@ -16,7 +16,7 @@ if __name__ == "__main__":
     content = response.json()
 
     stations = pd.json_normalize(content["stations"], sep="_").assign(
-        timestamp=pd.to_datetime(datetime.now().strftime("%Y-%m-%d %H:%M"))
+        timestamp=pd.to_datetime(datetime.utcnow().strftime("%Y-%m-%d %H:%M"))
     )
     # get datetime col to front
     stations = pd.concat(
@@ -70,7 +70,7 @@ if __name__ == "__main__":
                          "type_id": "bike_type_id", "type_name": "bike_type_name"})
     )
 
-    # Write to csv
-    df.to_csv(f"./Data/publibikes_{datetime.now().strftime('%Y%m%d%H%M%S')}.csv", index=False)
+    # Write to csv (account for timezone difference in github server) 
+    df.to_csv(f"./Data/publibikes_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.csv", index=False)
     
     print(f"Elapsed time: {time.time() - start_time}")
