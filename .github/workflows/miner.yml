@@ -25,4 +25,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: execute main script
-        run: python miner.py
+        run: | 
+          python miner.py
+          git add -A
+          git commit -m "test"
+          git push
