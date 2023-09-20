@@ -26,3 +26,4 @@ jobs:
 
       - name: execute main script
         run: python miner.py
+      - uses: MathiasSteilen/publibike-data@main
