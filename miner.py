@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 import requests
 import time
+import os
 
 SAVE_DIR = ("Data")
 
@@ -73,4 +74,14 @@ if __name__ == "__main__":
     # Write to csv (account for timezone difference in github server) 
     df.to_csv(f"./Data/publibikes_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.csv", index=False)
     
+    # If folder doesn't exist, then create it.
+    if not os.path.isdir(SAVE_DIR):
+        os.makedirs(SAVE_DIR)
+        df.to_csv(
+            f"Data/publibikes_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.csv", index=False)
+    else:
+        # Write to csv with appropriate title
+        df.to_csv(
+            f"Data/publibikes_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.csv", index=False)
+
     print(f"Elapsed time: {time.time() - start_time}")
