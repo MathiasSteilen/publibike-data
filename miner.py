@@ -71,6 +71,6 @@ if __name__ == "__main__":
     )
 
     # Write to csv
-    df.to_csv(f"Data/publibikes_{datetime.now().strftime('%Y%m%d%H%M%S')}.csv", index=False)
+    df.to_csv(f"./Data/publibikes_{datetime.now().strftime('%Y%m%d%H%M%S')}.csv", index=False)
     
     print(f"Elapsed time: {time.time() - start_time}")
