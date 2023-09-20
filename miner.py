@@ -1,7 +1,6 @@
 import pandas as pd
 from datetime import datetime
 import requests
-import os
 import time
 
 SAVE_DIR = ("Data")
@@ -71,14 +70,7 @@ if __name__ == "__main__":
                          "type_id": "bike_type_id", "type_name": "bike_type_name"})
     )
 
-    # If folder doesn't exist, then create it.
-    if not os.path.isdir(SAVE_DIR):
-        os.makedirs(SAVE_DIR)
-        df.to_csv(
-            f"Data/publibikes_{datetime.now().strftime('%Y%m%d%H%M%S')}.csv", index=False)
-    else:
-        # Write to csv with appropriate title
-        df.to_csv(
-            f"Data/publibikes_{datetime.now().strftime('%Y%m%d%H%M%S')}.csv", index=False)
+    # Write to csv
+    df.to_csv(f"Data/publibikes_{datetime.now().strftime('%Y%m%d%H%M%S')}.csv", index=False)
     
     print(f"Elapsed time: {time.time() - start_time}")
