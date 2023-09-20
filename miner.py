@@ -1,5 +1,4 @@
 import pandas as pd
-from tqdm.notebook import tqdm
 from datetime import datetime
 import requests
 import os
